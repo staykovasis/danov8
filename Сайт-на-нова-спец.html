@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СУ „Христо Г. Данов" Пловдив – Нови специалности – Прием 2026/2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Exo 2',sans-serif;background:#0a0e17;color:#e2e8f0;overflow-x:hidden;line-height:1.6}
+
+/* ═══════════════════════════════════════════════
+   LANDING PAGE
+   ═══════════════════════════════════════════════ */
+.landing{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative;overflow:hidden}
+.landing::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 30% 40%,#00e5ff06 0%,transparent 50%),radial-gradient(ellipse at 70% 60%,#10b98106 0%,transparent 50%);pointer-events:none}
+.landing-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.25rem;border:1px solid #ffffff15;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:#94a3b8;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2rem;backdrop-filter:blur(10px);background:#ffffff05;opacity:0;animation:fadeInUp .8s ease forwards .2s}
+.landing-badge .dot{width:8px;height:8px;background:#f59e0b;border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+.landing h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,4vw,3rem);font-weight:800;text-align:center;line-height:1.2;margin-bottom:.75rem;opacity:0;animation:fadeInUp .8s ease forwards .4s}
+.landing h1 .school-name{display:block;font-size:.45em;font-weight:400;color:#94a3b8;letter-spacing:.15em;margin-bottom:.5rem}
+.landing-subtitle{font-size:1.1rem;color:#94a3b8;text-align:center;margin-bottom:3.5rem;opacity:0;animation:fadeInUp .8s ease forwards .6s}
+.landing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;max-width:900px;width:100%;opacity:0;animation:fadeInUp .8s ease forwards .8s}
+.landing-card{position:relative;background:#111827;border:1px solid #1e293b;border-radius:20px;padding:2.5rem;cursor:pointer;transition:all .45s cubic-bezier(.4,0,.2,1);overflow:hidden}
+.landing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:20px 20px 0 0;transition:opacity .4s ease;opacity:.6}
+.landing-card:hover{transform:translateY(-8px);border-color:#2d3a4e}
+.landing-card:hover::before{opacity:1}
+.landing-card.is-card{--c1:#00e5ff;--c2:#7c3aed}
+.landing-card.rs-card{--c1:#10b981;--c2:#3b82f6}
+.landing-card.is-card::before{background:linear-gradient(135deg,var(--c1),var(--c2))}
+.landing-card.rs-card::before{background:linear-gradient(135deg,var(--c1),var(--c2))}
+.landing-card:hover{box-shadow:0 25px 50px -12px color-mix(in srgb,var(--c1) 15%,transparent)}
+.landing-card .card-icon{font-size:3rem;margin-bottom:1.25rem;display:block}
+.landing-card h2{font-family:'Orbitron',sans-serif;font-size:1.35rem;font-weight:700;margin-bottom:.5rem}
+.landing-card .card-code{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#64748b;letter-spacing:.1em;margin-bottom:1rem}
+.landing-card p{color:#94a3b8;font-size:.95rem;margin-bottom:1.25rem;line-height:1.6}
+.landing-card .card-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.landing-card .card-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:.2rem .55rem;border-radius:100px;border:1px solid #ffffff10;background:#ffffff05;color:#94a3b8}
+.landing-card .card-enter{font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:600;color:var(--c1);display:flex;align-items:center;gap:.5rem;transition:gap .3s ease}
+.landing-card:hover .card-enter{gap:.85rem}
+.landing-footer{margin-top:3.5rem;text-align:center;font-size:.75rem;color:#475569;opacity:0;animation:fadeInUp .8s ease forwards 1s}
+.landing-footer .school-full{font-family:'JetBrains Mono',monospace;font-size:.65rem;margin-top:.35rem;opacity:.5}
+
+/* ═══════════════════════════════════════════════
+   SHARED PAGE INFRASTRUCTURE
+   ═══════════════════════════════════════════════ */
+.page{display:none}
+.page.active{display:block}
+.back-btn{position:fixed;top:1.5rem;left:1.5rem;z-index:100;display:flex;align-items:center;gap:.5rem;padding:.6rem 1.2rem;border:1px solid #1e293b;border-radius:100px;background:rgba(17,24,39,.85);backdrop-filter:blur(12px);color:#94a3b8;font-family:'Exo 2',sans-serif;font-size:.8rem;cursor:pointer;transition:all .3s ease;text-decoration:none}
+.back-btn:hover{border-color:#475569;color:#e2e8f0;transform:translateX(-3px)}
+.back-btn svg{width:16px;height:16px;transition:transform .3s ease}
+.back-btn:hover svg{transform:translateX(-3px)}
+
+/* ═══════════════════════════════════════════════
+   PARTICLES (shared)
+   ═══════════════════════════════════════════════ */
+.particle{position:fixed;border-radius:50%;pointer-events:none;z-index:1;animation:float-particle linear infinite}
+@keyframes float-particle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+/* ═══════════════════════════════════════════════
+   INTELLIGENT SYSTEMS PAGE (IS) — cyan/purple
+   ═══════════════════════════════════════════════ */
+:root{--is-primary:#00e5ff;--is-primary-dim:#00e5ff33;--is-accent:#ff6d00;--is-gradient:linear-gradient(135deg,#00e5ff,#7c3aed)}
+#page-is section{position:relative;z-index:2}
+#page-is .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+#page-is .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,#00e5ff08 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,#7c3aed08 0%,transparent 50%);animation:hero-glow 8s ease-in-out infinite alternate}
+@keyframes hero-glow{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(2%,-2%) rotate(3deg)}}
+#page-is .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.25rem;border:1px solid var(--is-primary-dim);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--is-primary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeInUp .8s ease forwards .3s;backdrop-filter:blur(10px);background:#00e5ff08}
+#page-is .hero-badge .dot{width:8px;height:8px;background:var(--is-accent);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+#page-is .hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;opacity:0;animation:fadeInUp 1s ease forwards .5s}
+#page-is .hero h1 .gradient-text{background:var(--is-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#page-is .hero h1 .line2{display:block;font-size:.55em;font-weight:500;color:#94a3b8;-webkit-text-fill-color:#94a3b8;margin-top:.5rem;letter-spacing:.15em}
+#page-is .hero-desc{max-width:700px;font-size:1.15rem;color:#94a3b8;margin-bottom:2.5rem;opacity:0;animation:fadeInUp 1s ease forwards .7s}
+#page-is .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeInUp 1s ease forwards .9s}
+#page-is .hero-stat{text-align:center}
+#page-is .hero-stat .number{font-family:'Orbitron',sans-serif;font-size:2.5rem;font-weight:800;background:var(--is-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#page-is .hero-stat .label{font-size:.85rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem}
+#page-is .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);opacity:0;animation:fadeInUp 1s ease forwards 1.2s}
+#page-is .scroll-indicator .mouse{width:26px;height:40px;border:2px solid var(--is-primary-dim);border-radius:13px;position:relative}
+#page-is .scroll-indicator .wheel{width:4px;height:8px;background:var(--is-primary);border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scroll-wheel 2s ease-in-out infinite}
+@keyframes scroll-wheel{0%,100%{transform:translateX(-50%) translateY(0);opacity:1}100%{transform:translateX(-50%) translateY(12px);opacity:0}}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem}
+#page-is .section-label{color:var(--is-primary)}
+.section-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;margin-bottom:1rem}
+.section-subtitle{font-size:1.1rem;color:#94a3b8;max-width:600px}
+#page-is .about{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+#page-is .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+#page-is .about-visual{position:relative;height:400px;display:flex;align-items:center;justify-content:center}
+.ai-brain{width:280px;height:280px;position:relative}
+.ai-brain .core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;background:var(--is-gradient);border-radius:50%;box-shadow:0 0 60px #00e5ff44,0 0 120px #00e5ff22;animation:core-pulse 3s ease-in-out infinite}
+@keyframes core-pulse{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 60px #00e5ff44}50%{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 80px #00e5ff66}}
+.orbit{position:absolute;top:50%;left:50%;border:1px solid var(--is-primary-dim);border-radius:50%;animation:spin linear infinite}
+.orbit:nth-child(2){width:160px;height:160px;margin:-80px 0 0 -80px;animation-duration:12s}
+.orbit:nth-child(3){width:220px;height:220px;margin:-110px 0 0 -110px;animation-duration:18s;animation-direction:reverse}
+.orbit:nth-child(4){width:280px;height:280px;margin:-140px 0 0 -140px;animation-duration:24s}
+.orbit .node{position:absolute;width:12px;height:12px;background:var(--is-primary);border-radius:50%;top:-6px;left:50%;margin-left:-6px;box-shadow:0 0 20px var(--is-primary)}
+.orbit:nth-child(3) .node{background:var(--is-accent);box-shadow:0 0 20px var(--is-accent)}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+#page-is .about-text p{margin-bottom:1.25rem;color:#94a3b8;font-size:1.05rem}
+#page-is .about-text .highlight{color:#e2e8f0;font-weight:600}
+#page-is .areas{padding:6rem 2rem;background:linear-gradient(180deg,transparent,#0d121d 10%,#0d121d 90%,transparent)}
+.areas-inner{max-width:1200px;margin:0 auto}
+.areas-header{text-align:center;margin-bottom:4rem}
+.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.area-card{background:#111827;border:1px solid #1e293b;border-radius:16px;padding:2rem;transition:all .4s ease;position:relative;overflow:hidden;cursor:pointer}
+.area-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.area-card:hover{background:#1a2332;border-color:#2d3a4e;transform:translateY(-4px)}
+.area-card:hover::before{transform:scaleX(1)}
+#page-is .area-card::before{background:var(--is-gradient)}
+.area-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.25rem}
+.area-icon.ai{background:linear-gradient(135deg,#00e5ff22,#7c3aed22);border:1px solid #00e5ff33}
+.area-icon.data{background:linear-gradient(135deg,#ff6d0022,#ff2d5522);border:1px solid #ff6d0033}
+.area-icon.iot{background:linear-gradient(135deg,#00ff8822,#00e5ff22);border:1px solid #00ff8833}
+.area-icon.code{background:linear-gradient(135deg,#a78bfa22,#818cf822);border:1px solid #a78bfa33}
+.area-icon.gen{background:linear-gradient(135deg,#f472b622,#ec489922);border:1px solid #f472b633}
+.area-icon.math{background:linear-gradient(135deg,#fbbf2422,#f59e0b22);border:1px solid #fbbf2433}
+.area-card h3{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:.75rem}
+.area-card p{color:#94a3b8;font-size:.95rem;line-height:1.6}
+.area-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.area-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.25rem .65rem;border-radius:100px;background:#ffffff08;border:1px solid #ffffff10;color:#94a3b8}
+.click-hint{display:block;margin-top:1rem;font-size:.75rem;opacity:.6;font-family:'JetBrains Mono',monospace}
+#page-is .click-hint{color:var(--is-primary)}
+.curriculum{padding:6rem 2rem;max-width:1000px;margin:0 auto}
+.curriculum-header{text-align:center;margin-bottom:4rem}
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;width:2px;height:100%;border-radius:1px}
+#page-is .timeline::before{background:linear-gradient(180deg,var(--is-primary),var(--is-accent),#7c3aed)}
+.timeline-item{position:relative;margin-bottom:3rem;opacity:0;transform:translateX(-20px);transition:all .6s ease;cursor:pointer}
+.timeline-item.visible{opacity:1;transform:translateX(0)}
+.timeline-item::before{content:'';position:absolute;left:-3rem;top:.5rem;width:14px;height:14px;background:#0a0e17;border:3px solid;border-radius:50%;transform:translateX(-6px);z-index:1}
+.timeline-class{font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-bottom:.5rem}
+.timeline-content{background:#111827;border:1px solid #1e293b;border-radius:12px;padding:1.5rem;transition:all .3s ease}
+.timeline-item:hover .timeline-content{border-color:#2d3a4e;background:#1a2332}
+.timeline-content h3{font-size:1.15rem;font-weight:600;margin-bottom:.75rem}
+.timeline-subjects{display:flex;flex-wrap:wrap;gap:.5rem}
+.subject-chip{font-size:.8rem;padding:.35rem .8rem;border-radius:8px;transition:all .3s ease}
+#page-is .subject-chip{background:#00e5ff10;border:1px solid #00e5ff30;color:#00e5ff}
+#page-is .subject-chip:hover{background:var(--is-primary-dim);border-color:var(--is-primary)}
+/* IS timeline colors */
+#page-is .timeline-item:nth-child(1)::before{border-color:var(--is-primary)}
+#page-is .timeline-item:nth-child(1) .timeline-class{color:var(--is-primary)}
+#page-is .timeline-item:nth-child(2)::before{border-color:#6366f1}
+#page-is .timeline-item:nth-child(2) .timeline-class{color:#6366f1}
+#page-is .timeline-item:nth-child(3)::before{border-color:#a78bfa}
+#page-is .timeline-item:nth-child(3) .timeline-class{color:#a78bfa}
+#page-is .timeline-item:nth-child(4)::before{border-color:#f59e0b}
+#page-is .timeline-item:nth-child(4) .timeline-class{color:#f59e0b}
+#page-is .timeline-item:nth-child(5)::before{border-color:var(--is-accent)}
+#page-is .timeline-item:nth-child(5) .timeline-class{color:var(--is-accent)}
+.careers{padding:6rem 2rem;background:linear-gradient(180deg,transparent,#0d121d 10%,#0d121d 90%,transparent)}
+.careers-inner{max-width:1200px;margin:0 auto}
+.careers-header{text-align:center;margin-bottom:4rem}
+.careers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.career-card{text-align:center;padding:2.5rem 1.5rem;border-radius:16px;background:#111827;border:1px solid #1e293b;transition:all .4s ease;cursor:pointer}
+.career-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -10px #00000033}
+#page-is .career-card:hover{border-color:var(--is-primary-dim);box-shadow:0 20px 40px -10px #00e5ff11}
+.career-emoji{font-size:2.5rem;margin-bottom:1rem;display:block}
+.career-card h3{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.career-card p{color:#94a3b8;font-size:.9rem}
+.certification{padding:6rem 2rem;max-width:1000px;margin:0 auto;text-align:center}
+.cert-box{border-radius:24px;padding:3rem;margin-top:3rem;position:relative;overflow:hidden}
+#page-is .cert-box{background:linear-gradient(135deg,#00e5ff08,#7c3aed08);border:1px solid #00e5ff22}
+#page-is .cert-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--is-gradient)}
+.cert-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:2rem}
+.cert-item{text-align:center;cursor:pointer;transition:all .3s ease;border-radius:12px;padding:1rem}
+.cert-item:hover{background:#ffffff06}
+.cert-item .icon{font-size:2rem;margin-bottom:.75rem}
+.cert-item h4{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:600;margin-bottom:.35rem}
+.cert-item p{color:#94a3b8;font-size:.85rem}
+.cta{padding:8rem 2rem;text-align:center;position:relative}
+.cta::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+#page-is .cta::before{background:radial-gradient(ellipse at center,#00e5ff08 0%,transparent 60%)}
+.cta h2{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;margin-bottom:1.5rem}
+.cta p{font-size:1.2rem;color:#94a3b8;max-width:600px;margin:0 auto 2.5rem}
+.cta-year{display:inline-block;font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:700;padding:1rem 3rem;border:2px solid;border-radius:12px;position:relative;overflow:hidden;transition:all .4s ease}
+#page-is .cta-year{border-color:var(--is-primary);color:var(--is-primary)}
+#page-is .cta-year::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--is-gradient);transition:left .4s ease;z-index:-1}
+#page-is .cta-year:hover{color:#0a0e17}
+#page-is .cta-year:hover::before{left:0}
+footer{padding:2rem;text-align:center;font-size:.8rem;color:#94a3b8;border-top:1px solid #1e293b}
+footer .legal{font-family:'JetBrains Mono',monospace;font-size:.7rem;margin-top:.5rem;opacity:.5}
+
+/* ═══════════════════════════════════════════════
+   MODAL (shared)
+   ═══════════════════════════════════════════════ */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,8,15,.85);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease;padding:2rem}
+.modal-overlay.active{opacity:1;pointer-events:auto}
+.modal{background:#111827;border:1px solid #1e293b;border-radius:20px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:2.5rem;position:relative;transform:translateY(30px) scale(.95);transition:transform .35s ease}
+.modal-overlay.active .modal{transform:translateY(0) scale(1)}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:20px 20px 0 0}
+.modal.is-modal::before{background:var(--is-gradient)}
+.modal.rs-modal::before{background:var(--rs-gradient)}
+.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border:1px solid #1e293b;border-radius:50%;background:#0a0e17;color:#94a3b8;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;z-index:1}
+.modal-close:hover{border-color:var(--is-primary);color:var(--is-primary)}
+.modal-emoji{font-size:3rem;margin-bottom:1rem;display:block}
+.modal h3{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:1rem;padding-right:2rem}
+.modal p{color:#94a3b8;margin-bottom:1rem;font-size:.95rem;line-height:1.7}
+.modal p strong{color:#e2e8f0}
+.modal-highlight{padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.25rem 0}
+.modal-highlight.is-hl{background:#00e5ff08;border-left:3px solid var(--is-primary)}
+.modal-highlight.rs-hl{background:#10b98108;border-left:3px solid var(--rs-primary)}
+.modal-highlight p{margin:0;color:#e2e8f0;font-size:.9rem}
+.modal-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.modal-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.3rem .7rem;border-radius:100px}
+.modal-tag.is-tag{background:#00e5ff10;border:1px solid #00e5ff30;color:var(--is-primary)}
+.modal-tag.rs-tag{background:#10b98110;border:1px solid #10b98130;color:var(--rs-primary)}
+.modal::-webkit-scrollbar{width:6px}
+.modal::-webkit-scrollbar-track{background:transparent}
+.modal::-webkit-scrollbar-thumb{background:#1e293b;border-radius:3px}
+
+/* ═══════════════════════════════════════════════
+   SOFTWARE DEVELOPMENT PAGE (RS) — green/blue
+   ═══════════════════════════════════════════════ */
+:root{--rs-primary:#10b981;--rs-primary-dim:#10b98133;--rs-accent:#3b82f6;--rs-gradient:linear-gradient(135deg,#10b981,#3b82f6)}
+#page-rs section{position:relative;z-index:2}
+#page-rs .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+#page-rs .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,#10b98108 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,#3b82f608 0%,transparent 50%);animation:hero-glow 8s ease-in-out infinite alternate}
+#page-rs .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.25rem;border:1px solid var(--rs-primary-dim);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--rs-primary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeInUp .8s ease forwards .3s;backdrop-filter:blur(10px);background:#10b98108}
+#page-rs .hero-badge .dot{width:8px;height:8px;background:var(--rs-accent);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+#page-rs .hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;opacity:0;animation:fadeInUp 1s ease forwards .5s}
+#page-rs .hero h1 .gradient-text{background:var(--rs-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#page-rs .hero h1 .line2{display:block;font-size:.55em;font-weight:500;color:#94a3b8;-webkit-text-fill-color:#94a3b8;margin-top:.5rem;letter-spacing:.15em}
+#page-rs .hero-desc{max-width:700px;font-size:1.15rem;color:#94a3b8;margin-bottom:2.5rem;opacity:0;animation:fadeInUp 1s ease forwards .7s}
+#page-rs .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeInUp 1s ease forwards .9s}
+#page-rs .hero-stat{text-align:center}
+#page-rs .hero-stat .number{font-family:'Orbitron',sans-serif;font-size:2.5rem;font-weight:800;background:var(--rs-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#page-rs .hero-stat .label{font-size:.85rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem}
+#page-rs .scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);opacity:0;animation:fadeInUp 1s ease forwards 1.2s}
+#page-rs .scroll-indicator .mouse{width:26px;height:40px;border:2px solid var(--rs-primary-dim);border-radius:13px;position:relative}
+#page-rs .scroll-indicator .wheel{width:4px;height:8px;background:var(--rs-primary);border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scroll-wheel 2s ease-in-out infinite}
+#page-rs .section-label{color:var(--rs-primary)}
+#page-rs .about{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+#page-rs .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+#page-rs .about-visual{position:relative;height:400px;display:flex;align-items:center;justify-content:center}
+/* Code visual for RS */
+.code-visual{width:300px;height:300px;position:relative;display:flex;align-items:center;justify-content:center}
+.code-visual .bracket{position:absolute;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--rs-primary);opacity:.15;animation:bracket-pulse 4s ease-in-out infinite}
+.code-visual .bracket.left{font-size:12rem;left:-10px;top:50%;transform:translateY(-50%)}
+.code-visual .bracket.right{font-size:12rem;right:-10px;top:50%;transform:translateY(-50%);animation-delay:2s}
+@keyframes bracket-pulse{0%,100%{opacity:.1;transform:translateY(-50%) scale(1)}50%{opacity:.25;transform:translateY(-50%) scale(1.05)}}
+.code-visual .center-icon{width:100px;height:100px;background:var(--rs-gradient);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:3rem;box-shadow:0 0 60px #10b98144,0 0 120px #10b98122;animation:icon-float 3s ease-in-out infinite}
+@keyframes icon-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.code-visual .floating-tag{position:absolute;font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.3rem .7rem;border-radius:6px;background:#10b98115;border:1px solid #10b98130;color:var(--rs-primary);animation:tag-orbit linear infinite}
+.code-visual .floating-tag:nth-child(3){top:15%;left:5%;animation-duration:20s}
+.code-visual .floating-tag:nth-child(4){top:70%;right:0;animation-duration:25s;animation-delay:3s}
+.code-visual .floating-tag:nth-child(5){bottom:10%;left:15%;animation-duration:22s;animation-delay:6s;color:var(--rs-accent);background:#3b82f615;border-color:#3b82f630}
+.code-visual .floating-tag:nth-child(6){top:5%;right:15%;animation-duration:18s;animation-delay:9s;color:var(--rs-accent);background:#3b82f615;border-color:#3b82f630}
+@keyframes tag-orbit{0%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-8px) rotate(2deg)}50%{transform:translateY(0) rotate(0deg)}75%{transform:translateY(8px) rotate(-2deg)}100%{transform:translateY(0) rotate(0deg)}}
+#page-rs .about-text p{margin-bottom:1.25rem;color:#94a3b8;font-size:1.05rem}
+#page-rs .about-text .highlight{color:#e2e8f0;font-weight:600}
+#page-rs .areas{padding:6rem 2rem;background:linear-gradient(180deg,transparent,#0d121d 10%,#0d121d 90%,transparent)}
+#page-rs .area-card::before{background:var(--rs-gradient)}
+.area-icon.web{background:linear-gradient(135deg,#10b98122,#06b6d422);border:1px solid #10b98133}
+.area-icon.server{background:linear-gradient(135deg,#3b82f622,#6366f122);border:1px solid #3b82f633}
+.area-icon.db{background:linear-gradient(135deg,#f59e0b22,#ef444422);border:1px solid #f59e0b33}
+.area-icon.algo{background:linear-gradient(135deg,#a78bfa22,#818cf822);border:1px solid #a78bfa33}
+.area-icon.devops{background:linear-gradient(135deg,#ec489922,#f472b622);border:1px solid #ec489933}
+.area-icon.prog{background:linear-gradient(135deg,#10b98122,#3b82f622);border:1px solid #10b98133}
+#page-rs .click-hint{color:var(--rs-primary)}
+#page-rs .timeline::before{background:linear-gradient(180deg,var(--rs-primary),var(--rs-accent),#a78bfa)}
+#page-rs .timeline-item:nth-child(1)::before{border-color:var(--rs-primary)}
+#page-rs .timeline-item:nth-child(1) .timeline-class{color:var(--rs-primary)}
+#page-rs .timeline-item:nth-child(2)::before{border-color:#06b6d4}
+#page-rs .timeline-item:nth-child(2) .timeline-class{color:#06b6d4}
+#page-rs .timeline-item:nth-child(3)::before{border-color:var(--rs-accent)}
+#page-rs .timeline-item:nth-child(3) .timeline-class{color:var(--rs-accent)}
+#page-rs .timeline-item:nth-child(4)::before{border-color:#a78bfa}
+#page-rs .timeline-item:nth-child(4) .timeline-class{color:#a78bfa}
+#page-rs .timeline-item:nth-child(5)::before{border-color:#f59e0b}
+#page-rs .timeline-item:nth-child(5) .timeline-class{color:#f59e0b}
+#page-rs .subject-chip{background:#10b98110;border:1px solid #10b98130;color:#10b981}
+#page-rs .subject-chip:hover{background:var(--rs-primary-dim);border-color:var(--rs-primary)}
+#page-rs .career-card:hover{border-color:var(--rs-primary-dim);box-shadow:0 20px 40px -10px #10b98111}
+#page-rs .cert-box{background:linear-gradient(135deg,#10b98108,#3b82f608);border:1px solid #10b98122}
+#page-rs .cert-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--rs-gradient)}
+#page-rs .cta::before{background:radial-gradient(ellipse at center,#10b98108 0%,transparent 60%)}
+#page-rs .cta-year{border-color:var(--rs-primary);color:var(--rs-primary)}
+#page-rs .cta-year::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--rs-gradient);transition:left .4s ease;z-index:-1}
+#page-rs .cta-year:hover{color:#0a0e17}
+#page-rs .cta-year:hover::before{left:0}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS & UTILITIES
+   ═══════════════════════════════════════════════ */
+@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(30px);transition:all .8s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media(max-width:768px){
+.about-grid{grid-template-columns:1fr!important;gap:2rem!important}
+.about-visual{height:250px!important}
+.ai-brain{width:200px;height:200px}
+.orbit:nth-child(2){width:120px;height:120px;margin:-60px 0 0 -60px}
+.orbit:nth-child(3){width:160px;height:160px;margin:-80px 0 0 -80px}
+.orbit:nth-child(4){width:200px;height:200px;margin:-100px 0 0 -100px}
+.code-visual{width:220px;height:220px}
+.code-visual .bracket{font-size:8rem}
+.hero-stats{gap:1.5rem}
+.areas-grid{grid-template-columns:1fr}
+.modal{padding:1.5rem;margin:1rem}
+.landing-grid{grid-template-columns:1fr}
+.back-btn{top:1rem;left:1rem;padding:.5rem 1rem;font-size:.75rem}
+}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div class="modal-overlay" id="modalOverlay"><div class="modal" id="modalContent"><button class="modal-close" id="modalClose">✕</button><div id="modalBody"></div></div></div>
+
+<!-- ═══════════════════════════════════════════════
+     LANDING PAGE
+     ═══════════════════════════════════════════════ -->
+<div id="page-landing" class="page active">
+<section class="landing">
+  <div class="landing-badge"><span class="dot"></span>Нови специалности · Прием 2026/2027</div>
+  <h1><span class="school-name">СУ „Христо Г. Данов" – Пловдив</span>Избери своята <span style="background:linear-gradient(135deg,#00e5ff,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">специалност</span></h1>
+  <p class="landing-subtitle">Две професии на бъдещето с прием след завършено основно образование</p>
+  <div class="landing-grid">
+    <div class="landing-card is-card" onclick="showPage('is')">
+      <span class="card-icon">🧠</span>
+      <h2>Интелигентни системи</h2>
+      <div class="card-code">КОД 061301 · III СТЕПЕН · НКР/ЕКР 4</div>
+      <p>Изкуствен интелект, машинно обучение, IoT, анализ на данни, генеративен ИИ и роботика.</p>
+      <div class="card-tags"><span class="card-tag">AI / ML</span><span class="card-tag">Python</span><span class="card-tag">IoT</span><span class="card-tag">Data Science</span><span class="card-tag">GenAI</span></div>
+      <span class="card-enter">Разгледай ▸</span>
+    </div>
+    <div class="landing-card rs-card" onclick="showPage('rs')">
+      <span class="card-icon">💻</span>
+      <h2>Разработка на софтуер</h2>
+      <div class="card-code">КОД 061303 · III СТЕПЕН · НКР/ЕКР 4</div>
+      <p>Програмиране, уеб и мобилни приложения, бази данни, сървърна логика, облачни технологии и DevOps.</p>
+      <div class="card-tags"><span class="card-tag">C#</span><span class="card-tag">JavaScript</span><span class="card-tag">SQL</span><span class="card-tag">Web</span><span class="card-tag">Cloud</span></div>
+      <span class="card-enter">Разгледай ▸</span>
+    </div>
+  </div>
+  <div class="landing-footer">
+    <p>5 години обучение · Прием след VII клас · Диплома + Свидетелство за III степен ПК</p>
+    <p class="school-full">Направление 0613 „Анализ и разработване на софтуер и софтуерни приложения"</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     INTELLIGENT SYSTEMS PAGE
+     ═══════════════════════════════════════════════ -->
+<div id="page-is" class="page">
+<button class="back-btn" onclick="showPage('landing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Обратно</button>
+
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span>СУ „Христо Г. Данов" – Пловдив · Нова специалност · Прием 2026/2027</div>
+  <h1><span class="gradient-text">Интелигентни<br>системи</span><span class="line2">Професия на бъдещето</span></h1>
+  <p class="hero-desc">Изкуствен интелект · Машинно обучение · IoT · Анализ на данни · Роботика</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="number">5</div><div class="label">Години обучение</div></div>
+    <div class="hero-stat"><div class="number">III</div><div class="label">Степен квалификация</div></div>
+    <div class="hero-stat"><div class="number">4</div><div class="label">Ниво по ЕКР</div></div>
+  </div>
+  <div class="scroll-indicator"><div class="mouse"><div class="wheel"></div></div></div>
+</section>
+
+<section class="about"><div class="about-grid">
+  <div class="about-visual"><div class="ai-brain"><div class="core"></div><div class="orbit"><div class="node"></div></div><div class="orbit"><div class="node"></div></div><div class="orbit"><div class="node"></div></div></div></div>
+  <div class="about-text fade-in">
+    <div class="section-label">За специалността</div>
+    <h2 class="section-title">Какво е „Интелигентни системи"?</h2>
+    <p>Специалистът по <span class="highlight">„Интелигентни системи"</span> участва в проектирането, разработването и внедряването на решения, базирани на <span class="highlight">изкуствен интелект</span>, <span class="highlight">машинно обучение</span>, <span class="highlight">роботизирани системи</span> и <span class="highlight">IoT технологии</span>.</p>
+    <p>Той събира, обработва и анализира данни с цел създаване на софтуерни системи, които могат да вземат <span class="highlight">автономни решения</span>, да прогнозират поведение или да автоматизират сложни процеси.</p>
+    <p>Работната среда включва както софтуерно програмиране, така и хардуерно взаимодействие — от <span class="highlight">умни сгради</span> и <span class="highlight">индустриални решения</span> до <span class="highlight">умни асистенти</span> и <span class="highlight">предиктивна поддръжка</span>.</p>
+  </div>
+</div></section>
+
+<section class="areas"><div class="areas-inner">
+  <div class="areas-header fade-in"><div class="section-label">Какво ще изучават</div><h2 class="section-title">Основни направления</h2><p class="section-subtitle" style="margin:0 auto">Шест ключови области, които формират специалиста на бъдещето. <strong style="color:var(--is-primary)">Натиснете за подробности.</strong></p></div>
+  <div class="areas-grid">
+    <div class="area-card fade-in" data-modal="area-ai"><div class="area-icon ai">🧠</div><h3>Изкуствен интелект и машинно обучение</h3><p>Контролирано и неконтролирано обучение, невронни мрежи, модели за класификация, регресия и клъстеризация.</p><div class="area-tags"><span class="area-tag">Supervised learning</span><span class="area-tag">Unsupervised learning</span><span class="area-tag">Reinforcement learning</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="area-data"><div class="area-icon data">📊</div><h3>Анализ на данни</h3><p>Събиране, обработка и визуализация на големи масиви от данни. SQL бази данни, статистически методи и инструменти за анализ.</p><div class="area-tags"><span class="area-tag">Big Data</span><span class="area-tag">SQL</span><span class="area-tag">Визуализация</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="area-iot"><div class="area-icon iot">🌐</div><h3>IoT и вградени системи</h3><p>Настройка и управление на IoT устройства, сензорни мрежи, интелигентен мониторинг и системи за вземане на решения в реално време.</p><div class="area-tags"><span class="area-tag">Сензори</span><span class="area-tag">Embedded AI</span><span class="area-tag">Мрежи</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="area-code"><div class="area-icon code">💻</div><h3>Програмиране</h3><p>Алгоритми, структури от данни, обектно-ориентирано програмиране, уеб разработка, системи за контрол на версиите.</p><div class="area-tags"><span class="area-tag">Алгоритми</span><span class="area-tag">ООП</span><span class="area-tag">Git</span><span class="area-tag">HTML/CSS/JS</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="area-gen"><div class="area-icon gen">✨</div><h3>Генеративен изкуствен интелект</h3><p>Работа с генеративни модели, промпт инженеринг, създаване на съдържание чрез ИИ, етика на генеративния ИИ.</p><div class="area-tags"><span class="area-tag">GenAI</span><span class="area-tag">Prompt engineering</span><span class="area-tag">LLM</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="area-math"><div class="area-icon math">📐</div><h3>Математика за ИИ</h3><p>Линейна алгебра, статистика и вероятности — математическата основа зад алгоритмите за машинно обучение.</p><div class="area-tags"><span class="area-tag">Линейна алгебра</span><span class="area-tag">Статистика</span><span class="area-tag">Оптимизация</span></div><span class="click-hint">▸ Научете повече</span></div>
+  </div>
+</div></section>
+
+<section class="curriculum"><div class="curriculum-header fade-in"><div class="section-label">Учебен план</div><h2 class="section-title">Пътят на обучението</h2><p class="section-subtitle" style="margin:0 auto">5 години от VIII до XII клас. <strong style="color:var(--is-primary)">Натиснете за подробности.</strong></p></div>
+<div class="timeline">
+  <div class="timeline-item" data-modal="is-class-8"><div class="timeline-class">VIII клас · Основи</div><div class="timeline-content"><h3>Фундаментът</h3><div class="timeline-subjects"><span class="subject-chip">Български език и литература</span><span class="subject-chip">Математика</span><span class="subject-chip">Разширено изучаване на чужд език</span><span class="subject-chip">Информационни технологии</span><span class="subject-chip">Предприемачество</span><span class="subject-chip">Физика и астрономия</span></div></div></div>
+  <div class="timeline-item" data-modal="is-class-9"><div class="timeline-class">IX клас · Навлизане в професията</div><div class="timeline-content"><h3>Първи стъпки в ИТ</h3><div class="timeline-subjects"><span class="subject-chip">Дигитални технологии</span><span class="subject-chip">Програмиране</span><span class="subject-chip">Основи на бази данни</span><span class="subject-chip">ЗБУТ</span><span class="subject-chip">Разширена професионална подготовка</span></div></div></div>
+  <div class="timeline-item" data-modal="is-class-10"><div class="timeline-class">X клас · Надграждане</div><div class="timeline-content"><h3>Утвърждаване на уменията</h3><div class="timeline-subjects"><span class="subject-chip">Дигитални технологии — практика</span><span class="subject-chip">Програмиране — теория и практика</span><span class="subject-chip">Икономика</span><span class="subject-chip">Разширена професионална подготовка</span><span class="subject-chip">Производствена практика</span></div></div></div>
+  <div class="timeline-item" data-modal="is-class-11"><div class="timeline-class">XI клас · Специализация</div><div class="timeline-content"><h3>Сърцето на специалността</h3><div class="timeline-subjects"><span class="subject-chip">Алгоритми за машинно обучение</span><span class="subject-chip">Анализ на данни</span><span class="subject-chip">Програмиране на интелигентни системи</span><span class="subject-chip">ИИ във вградени системи</span><span class="subject-chip">Математика за ИИ</span><span class="subject-chip">Генеративен ИИ</span><span class="subject-chip">Чужд език по професията</span></div></div></div>
+  <div class="timeline-item" data-modal="is-class-12"><div class="timeline-class">XII клас · Завършване</div><div class="timeline-content"><h3>Професионална зрелост</h3><div class="timeline-subjects"><span class="subject-chip">Задълбочена практика по всички специални предмети</span><span class="subject-chip">Производствена практика</span><span class="subject-chip">ДЗИ по БЕЛ</span><span class="subject-chip">Държавен изпит по теория и практика на професията</span></div></div></div>
+</div></section>
+
+<section class="careers"><div class="careers-inner">
+  <div class="careers-header fade-in"><div class="section-label">Професионална реализация</div><h2 class="section-title">Перспективи след завършване</h2><p class="section-subtitle" style="margin:0 auto">Множество пътища за кариерно развитие. <strong style="color:var(--is-primary)">Натиснете за подробности.</strong></p></div>
+  <div class="careers-grid">
+    <div class="career-card fade-in" data-modal="career-ai"><span class="career-emoji">🤖</span><h3>AI / ML разработчик</h3><p>Създава и обучава модели за машинно обучение и невронни мрежи</p></div>
+    <div class="career-card fade-in" data-modal="career-data"><span class="career-emoji">📈</span><h3>Анализатор на данни</h3><p>Обработва и извлича стойност от големи масиви от данни</p></div>
+    <div class="career-card fade-in" data-modal="career-iot"><span class="career-emoji">🏠</span><h3>IoT специалист</h3><p>Проектира умни сгради, индустриални системи и свързани устройства</p></div>
+    <div class="career-card fade-in" data-modal="career-integrator"><span class="career-emoji">🔧</span><h3>Системен интегратор</h3><p>Внедрява и свързва интелигентни решения в реални бизнес среди</p></div>
+    <div class="career-card fade-in" data-modal="career-security"><span class="career-emoji">🛡️</span><h3>AI специалист по киберсигурност</h3><p>Защитава интелигентни системи и данни от кибер заплахи</p></div>
+    <div class="career-card fade-in" data-modal="career-robotics"><span class="career-emoji">⚙️</span><h3>Роботик / Автоматизация</h3><p>Проектира автономни роботизирани системи за индустрията</p></div>
+    <div class="career-card fade-in" data-modal="career-uni-is"><span class="career-emoji">🎓</span><h3>Висше образование</h3><p>Продължаване в университет по компютърни науки, AI, Data Science</p></div>
+    <div class="career-card fade-in" data-modal="career-startup-is"><span class="career-emoji">🚀</span><h3>Стартъп предприемач</h3><p>Създаване на собствени иновативни решения с ИИ технологии</p></div>
+  </div>
+</div></section>
+
+<section class="certification fade-in">
+  <div class="section-label">Сертификация</div>
+  <h2 class="section-title">Какво получавате при завършване</h2>
+  <p class="section-subtitle" style="margin:0 auto">Пълен комплект документи, признати в България и ЕС. <strong style="color:var(--is-primary)">Натиснете за подробности.</strong></p>
+  <div class="cert-box">
+    <div class="cert-items">
+      <div class="cert-item" data-modal="cert-diploma-is"><div class="icon">📜</div><h4>Диплома за средно образование</h4><p>Завършен XII клас с положен ДЗИ по БЕЛ</p></div>
+      <div class="cert-item" data-modal="cert-qualification-is"><div class="icon">🏅</div><h4>Свидетелство за професионална квалификация</h4><p>III степен по професия „Интелигентни системи"</p></div>
+      <div class="cert-item" data-modal="cert-eu-is"><div class="icon">🇪🇺</div><h4>Европейско приложение</h4><p>Ниво 4 по ЕКР — признато в целия ЕС</p></div>
+      <div class="cert-item" data-modal="cert-practice-is"><div class="icon">💼</div><h4>Производствена практика</h4><p>192 часа реален опит в технологична компания</p></div>
+      <div class="cert-item" data-modal="cert-uni-is"><div class="icon">🔑</div><h4>Достъп до висше образование</h4><p>Право за кандидатстване в България и чужбина</p></div>
+      <div class="cert-item" data-modal="cert-market-is"><div class="icon">🌍</div><h4>Готовност за пазара на труда</h4><p>Компетентности в най-търсените области</p></div>
+    </div>
+    <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid #ffffff10">
+      <p style="color:#94a3b8;font-size:.95rem;max-width:700px;margin:0 auto"><span style="color:var(--is-primary);font-family:'Orbitron',sans-serif;font-weight:600">Важно:</span> Държавният изпит за придобиване на професионална квалификация се провежда в две части — по <strong style="color:#e2e8f0">теория</strong> и по <strong style="color:#e2e8f0">практика</strong> на професията, по национална изпитна програма, утвърдена от Министъра на образованието и науката.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Бъдещето<br>започва <span style="background:var(--is-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent">тук</span></h2>
+  <p>СУ „Христо Г. Данов" – Пловдив отваря врати за новата ера на технологиите. Приемът започва за учебната година:</p>
+  <div class="cta-year">2026 / 2027</div>
+</section>
+
+<footer>
+  <p>СУ „Христо Г. Данов" – Пловдив · Професия код 061301 „Интелигентни системи" · Направление код 0613 „Анализ и разработване на софтуер и софтуерни приложения"</p>
+  <p class="legal">Утвърдено от Министерството на образованието и науката · Наредба № 75 от 21.11.2025 г.</p>
+</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SOFTWARE DEVELOPMENT PAGE
+     ═══════════════════════════════════════════════ -->
+<div id="page-rs" class="page">
+<button class="back-btn" onclick="showPage('landing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Обратно</button>
+
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span>СУ „Христо Г. Данов" – Пловдив · Нова специалност · Прием 2026/2027</div>
+  <h1><span class="gradient-text">Разработка на<br>софтуер</span><span class="line2">Създай дигиталното бъдеще</span></h1>
+  <p class="hero-desc">Програмиране · Уеб приложения · Бази данни · Облачни технологии · DevOps</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="number">5</div><div class="label">Години обучение</div></div>
+    <div class="hero-stat"><div class="number">III</div><div class="label">Степен квалификация</div></div>
+    <div class="hero-stat"><div class="number">4</div><div class="label">Ниво по ЕКР</div></div>
+  </div>
+  <div class="scroll-indicator"><div class="mouse"><div class="wheel"></div></div></div>
+</section>
+
+<section class="about"><div class="about-grid">
+  <div class="about-visual">
+    <div class="code-visual">
+      <span class="bracket left">{</span>
+      <div class="center-icon">💻</div>
+      <span class="bracket right">}</span>
+      <span class="floating-tag">C#</span>
+      <span class="floating-tag">REST API</span>
+      <span class="floating-tag">React</span>
+      <span class="floating-tag">SQL</span>
+    </div>
+  </div>
+  <div class="about-text fade-in">
+    <div class="section-label">За специалността</div>
+    <h2 class="section-title">Какво е „Разработка на софтуер"?</h2>
+    <p>Специалистът по <span class="highlight">„Разработка на софтуер"</span> изгражда, тества и поддържа <span class="highlight">софтуерни приложения</span> — от уеб и мобилни платформи до сложни корпоративни системи с <span class="highlight">многослойна архитектура</span>.</p>
+    <p>Той работи с езици за програмиране от високо ниво, прилага <span class="highlight">архитектурни шаблони</span> (MVC, MVVM), създава <span class="highlight">REST API</span>, управлява <span class="highlight">бази данни</span> и внедрява системи в <span class="highlight">облачни платформи</span>.</p>
+    <p>Работата се извършва в екипна среда с методологии като <span class="highlight">Agile</span> и <span class="highlight">Scrum</span>, системи за контрол на версии (<span class="highlight">Git</span>), <span class="highlight">CI/CD</span> и контейнеризация — с фокус върху качествен и сигурен код.</p>
+  </div>
+</div></section>
+
+<section class="areas"><div class="areas-inner">
+  <div class="areas-header fade-in"><div class="section-label">Какво ще изучават</div><h2 class="section-title">Основни направления</h2><p class="section-subtitle" style="margin:0 auto">Шест ключови области, които изграждат пълноценен софтуерен разработчик. <strong style="color:var(--rs-primary)">Натиснете за подробности.</strong></p></div>
+  <div class="areas-grid">
+    <div class="area-card fade-in" data-modal="rs-area-prog"><div class="area-icon prog">⌨️</div><h3>Програмиране и ООП</h3><p>Променливи, условия, цикли, функции, класове и обекти, наследяване, полиморфизъм, инкапсулация — основите на всеки разработчик.</p><div class="area-tags"><span class="area-tag">C#</span><span class="area-tag">ООП</span><span class="area-tag">SOLID</span><span class="area-tag">Design Patterns</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="rs-area-web"><div class="area-icon web">🌐</div><h3>Уеб и мобилно програмиране</h3><p>Frontend и backend разработка, адаптивен дизайн, SPA приложения, мобилни интерфейси и клиент-сървър комуникация.</p><div class="area-tags"><span class="area-tag">HTML/CSS/JS</span><span class="area-tag">React</span><span class="area-tag">Responsive</span><span class="area-tag">SPA</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="rs-area-server"><div class="area-icon server">🖥️</div><h3>Сървърна логика</h3><p>Backend разработка, REST API, MVC архитектура, обработка на заявки, автентикация, оторизация и сигурност.</p><div class="area-tags"><span class="area-tag">ASP.NET</span><span class="area-tag">REST API</span><span class="area-tag">MVC</span><span class="area-tag">HTTP</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="rs-area-db"><div class="area-icon db">🗄️</div><h3>Бази данни</h3><p>Релационен модел, SQL заявки, нормализация, индекси, свързване на бази данни към приложения чрез ORM.</p><div class="area-tags"><span class="area-tag">SQL</span><span class="area-tag">MySQL</span><span class="area-tag">Entity Framework</span><span class="area-tag">JOIN</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="rs-area-algo"><div class="area-icon algo">🧩</div><h3>Алгоритми и структури от данни</h3><p>Сортиране, търсене, рекурсия, стекове, опашки, дървета и графи — ефективни решения за реални проблеми.</p><div class="area-tags"><span class="area-tag">Сортиране</span><span class="area-tag">Рекурсия</span><span class="area-tag">Big O</span><span class="area-tag">Дървета</span></div><span class="click-hint">▸ Научете повече</span></div>
+    <div class="area-card fade-in" data-modal="rs-area-devops"><div class="area-icon devops">☁️</div><h3>Разработка на софтуер и облачни технологии</h3><p>Жизнен цикъл, Agile/Scrum, тестване, CI/CD, контейнери, облачни платформи и вградени системи.</p><div class="area-tags"><span class="area-tag">Git</span><span class="area-tag">Docker</span><span class="area-tag">CI/CD</span><span class="area-tag">Agile</span><span class="area-tag">Cloud</span></div><span class="click-hint">▸ Научете повече</span></div>
+  </div>
+</div></section>
+
+<section class="curriculum"><div class="curriculum-header fade-in"><div class="section-label">Учебен план</div><h2 class="section-title">Пътят на обучението</h2><p class="section-subtitle" style="margin:0 auto">5 години от VIII до XII клас. <strong style="color:var(--rs-primary)">Натиснете за подробности.</strong></p></div>
+<div class="timeline">
+  <div class="timeline-item" data-modal="rs-class-8"><div class="timeline-class">VIII клас · Основи</div><div class="timeline-content"><h3>Фундаментът</h3><div class="timeline-subjects"><span class="subject-chip">Български език и литература</span><span class="subject-chip">Математика</span><span class="subject-chip">Разширено изучаване на чужд език</span><span class="subject-chip">Информационни технологии</span><span class="subject-chip">Предприемачество</span><span class="subject-chip">Физика и астрономия</span></div></div></div>
+  <div class="timeline-item" data-modal="rs-class-9"><div class="timeline-class">IX клас · Навлизане в професията</div><div class="timeline-content"><h3>Първи стъпки в кода</h3><div class="timeline-subjects"><span class="subject-chip">Дигитални технологии</span><span class="subject-chip">Програмиране</span><span class="subject-chip">Основи на бази данни</span><span class="subject-chip">ЗБУТ</span><span class="subject-chip">Разширена професионална подготовка</span></div></div></div>
+  <div class="timeline-item" data-modal="rs-class-10"><div class="timeline-class">X клас · Надграждане</div><div class="timeline-content"><h3>Утвърждаване на уменията</h3><div class="timeline-subjects"><span class="subject-chip">Програмиране — теория и практика</span><span class="subject-chip">Дигитални технологии — практика</span><span class="subject-chip">Икономика</span><span class="subject-chip">Разширена професионална подготовка</span><span class="subject-chip">Производствена практика</span></div></div></div>
+  <div class="timeline-item" data-modal="rs-class-11"><div class="timeline-class">XI клас · Специализация</div><div class="timeline-content"><h3>Сърцето на специалността</h3><div class="timeline-subjects"><span class="subject-chip">Уеб и мобилно програмиране</span><span class="subject-chip">Програмиране на сървърна логика</span><span class="subject-chip">Бази данни</span><span class="subject-chip">Алгоритми и структури от данни</span><span class="subject-chip">Разработка на софтуер</span><span class="subject-chip">Облачни технологии и вградени системи</span><span class="subject-chip">Чужд език по професията</span></div></div></div>
+  <div class="timeline-item" data-modal="rs-class-12"><div class="timeline-class">XII клас · Завършване</div><div class="timeline-content"><h3>Професионална зрелост</h3><div class="timeline-subjects"><span class="subject-chip">Задълбочена практика по всички специални предмети</span><span class="subject-chip">Производствена практика</span><span class="subject-chip">ДЗИ по БЕЛ</span><span class="subject-chip">Държавен изпит по теория и практика на професията</span></div></div></div>
+</div></section>
+
+<section class="careers"><div class="careers-inner">
+  <div class="careers-header fade-in"><div class="section-label">Професионална реализация</div><h2 class="section-title">Перспективи след завършване</h2><p class="section-subtitle" style="margin:0 auto">Множество пътища за кариерно развитие. <strong style="color:var(--rs-primary)">Натиснете за подробности.</strong></p></div>
+  <div class="careers-grid">
+    <div class="career-card fade-in" data-modal="rs-career-full"><span class="career-emoji">🔥</span><h3>Full-Stack разработчик</h3><p>Изгражда цялостни приложения — от потребителския интерфейс до сървърната логика</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-front"><span class="career-emoji">🎨</span><h3>Frontend разработчик</h3><p>Създава модерни и адаптивни потребителски интерфейси</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-back"><span class="career-emoji">🖥️</span><h3>Backend разработчик</h3><p>Разработва сървърна логика, API и бази данни</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-mobile"><span class="career-emoji">📱</span><h3>Мобилен разработчик</h3><p>Създава приложения за iOS и Android устройства</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-devops"><span class="career-emoji">⚡</span><h3>DevOps инженер</h3><p>Автоматизира процесите по разработка, тестване и внедряване</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-qa"><span class="career-emoji">🔍</span><h3>QA инженер / Тестер</h3><p>Гарантира качеството на софтуера чрез тестване и анализ</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-uni"><span class="career-emoji">🎓</span><h3>Висше образование</h3><p>Продължаване в университет по софтуерно инженерство</p></div>
+    <div class="career-card fade-in" data-modal="rs-career-startup"><span class="career-emoji">🚀</span><h3>Стартъп предприемач</h3><p>Създаване на собствени софтуерни продукти и услуги</p></div>
+  </div>
+</div></section>
+
+<section class="certification fade-in">
+  <div class="section-label">Сертификация</div>
+  <h2 class="section-title">Какво получавате при завършване</h2>
+  <p class="section-subtitle" style="margin:0 auto">Пълен комплект документи, признати в България и ЕС. <strong style="color:var(--rs-primary)">Натиснете за подробности.</strong></p>
+  <div class="cert-box">
+    <div class="cert-items">
+      <div class="cert-item" data-modal="cert-diploma-rs"><div class="icon">📜</div><h4>Диплома за средно образование</h4><p>Завършен XII клас с положен ДЗИ по БЕЛ</p></div>
+      <div class="cert-item" data-modal="cert-qualification-rs"><div class="icon">🏅</div><h4>Свидетелство за професионална квалификация</h4><p>III степен по професия „Разработка на софтуер"</p></div>
+      <div class="cert-item" data-modal="cert-eu-rs"><div class="icon">🇪🇺</div><h4>Европейско приложение</h4><p>Ниво 4 по ЕКР — признато в целия ЕС</p></div>
+      <div class="cert-item" data-modal="cert-practice-rs"><div class="icon">💼</div><h4>Производствена практика</h4><p>192 часа реален опит в софтуерна компания</p></div>
+      <div class="cert-item" data-modal="cert-uni-rs"><div class="icon">🔑</div><h4>Достъп до висше образование</h4><p>Право за кандидатстване в България и чужбина</p></div>
+      <div class="cert-item" data-modal="cert-market-rs"><div class="icon">🌍</div><h4>Готовност за пазара на труда</h4><p>Компетентности в най-търсените области</p></div>
+    </div>
+    <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid #ffffff10">
+      <p style="color:#94a3b8;font-size:.95rem;max-width:700px;margin:0 auto"><span style="color:var(--rs-primary);font-family:'Orbitron',sans-serif;font-weight:600">Важно:</span> Държавният изпит за придобиване на професионална квалификация се провежда в две части — по <strong style="color:#e2e8f0">теория</strong> и по <strong style="color:#e2e8f0">практика</strong> на професията, по национална изпитна програма, утвърдена от Министъра на образованието и науката.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Кодът на<br>бъдещето <span style="background:var(--rs-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent">започва тук</span></h2>
+  <p>СУ „Христо Г. Данов" – Пловдив отваря врати за новата ера на софтуерната разработка. Приемът започва за учебната година:</p>
+  <div class="cta-year">2026 / 2027</div>
+</section>
+
+<footer>
+  <p>СУ „Христо Г. Данов" – Пловдив · Професия код 061303 „Разработка на софтуер" · Направление код 0613 „Анализ и разработване на софтуер и софтуерни приложения"</p>
+  <p class="legal">Утвърдено от Министерството на образованието и науката · Наредба № 81 от 28.11.2025 г. · Учебен план утвърден със Заповед РД09-300/26.01.2026 г.</p>
+</footer>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════ */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById('page-'+id);
+  if(target){target.classList.add('active');window.scrollTo(0,0);initObservers(target)}
+  updateParticles(id);
+}
+function updateParticles(id){
+  const pc=document.getElementById('particles');pc.innerHTML='';
+  const colors=id==='is'?['#00e5ff','#7c3aed']:id==='rs'?['#10b981','#3b82f6']:['#00e5ff','#10b981'];
+  for(let i=0;i<25;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*4+1;p.style.width=s+'px';p.style.height=s+'px';p.style.left=Math.random()*100+'%';p.style.background=colors[Math.random()>.5?0:1];p.style.animationDuration=(Math.random()*15+10)+'s';p.style.animationDelay=(Math.random()*10)+'s';p.style.opacity=Math.random()*.5+.1;pc.appendChild(p)}
+}
+updateParticles('landing');
+
+/* ═══════════════════════════════════════════════
+   INTERSECTION OBSERVER
+   ═══════════════════════════════════════════════ */
+function initObservers(container){
+  const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){const d=en.target.closest('.areas-grid,.careers-grid')?Array.from(en.target.parentElement.children).indexOf(en.target)*100:0;setTimeout(()=>en.target.classList.add('visible'),d)}})},{threshold:.1});
+  container.querySelectorAll('.fade-in,.timeline-item').forEach(el=>{el.classList.remove('visible');obs.observe(el)});
+}
+initObservers(document.getElementById('page-landing'));
+
+/* ═══════════════════════════════════════════════
+   MODAL SYSTEM
+   ═══════════════════════════════════════════════ */
+const overlay=document.getElementById('modalOverlay'),modalBody=document.getElementById('modalBody'),modalEl=document.getElementById('modalContent');
+const M={
+/* ─── IS MODALS (original content) ─── */
+'area-ai':{e:'🧠',t:'Изкуствен интелект и машинно обучение',c:'is',h:'<p>Учениците ще изучават основите и напредналите концепции на <strong>изкуствения интелект</strong> — от теоретичните основи до практическото приложение на алгоритми за машинно обучение.</p><div class="modal-highlight is-hl"><p>📌 Наемането на AI/ML специалисти е нараснало с 88% през 2025 г. спрямо предходната година, а заплатите им са средно с 12% по-високи от останалите ИТ роли.</p></div><p><strong>Контролирано обучение</strong> (supervised learning) — класификация и регресия чрез алгоритми като линейна регресия, дървета на решения, случайни гори и SVM.</p><p><strong>Неконтролирано обучение</strong> (unsupervised learning) — клъстеризация с K-means, йерархично клъстериране, откриване на аномалии.</p><p><strong>Обучение с утвърждение</strong> (reinforcement learning) — агенти, среди, награди; приложения в игри и роботика.</p><p><strong>Невронни мрежи</strong> — персептрони, многослойни мрежи, функции за активация, обратно разпространение на грешката.</p><div class="modal-tags"><span class="modal-tag is-tag">Python</span><span class="modal-tag is-tag">TensorFlow</span><span class="modal-tag is-tag">PyTorch</span><span class="modal-tag is-tag">scikit-learn</span><span class="modal-tag is-tag">Keras</span></div>'},
+'area-data':{e:'📊',t:'Анализ на данни',c:'is',h:'<p>Анализът на данни е умението да се превръщат суровите данни в <strong>полезни прозрения и бизнес решения</strong>. Учениците ще овладеят целия процес — от събиране и почистване до визуализация и интерпретация.</p><div class="modal-highlight is-hl"><p>📌 Data Scientists в Европа получават средно €70 000–€95 000 годишно. Пазарът за анализ на данни расте с 19% годишно.</p></div><p><strong>SQL и релационни бази данни</strong> — създаване на таблици, релации, заявки (SELECT, JOIN, GROUP BY), нормализация, индекси.</p><p><strong>Статистически методи</strong> — описателна статистика, корелация, регресионен анализ, тестване на хипотези.</p><p><strong>Визуализация</strong> — графики, диаграми и интерактивни дашборди за представяне на резултати.</p><div class="modal-tags"><span class="modal-tag is-tag">SQL</span><span class="modal-tag is-tag">Pandas</span><span class="modal-tag is-tag">Matplotlib</span><span class="modal-tag is-tag">Power BI</span><span class="modal-tag is-tag">Big Data</span></div>'},
+'area-iot':{e:'🌐',t:'IoT и вградени системи',c:'is',h:'<p>Internet of Things свързва физическия свят с цифровия. Учениците ще работят с <strong>реален хардуер</strong> — сензори, микроконтролери и комуникационни модули.</p><div class="modal-highlight is-hl"><p>📌 IoT пазарът ще достигне $1.3 трилиона до 2026 г. Пазарът за умни градове расте с 19% годишно.</p></div><p><strong>Сензори и актуатори</strong> — температурни, ултразвукови, акселерометри, серво мотори, релета.</p><p><strong>Микроконтролери</strong> — Arduino, ESP32, Raspberry Pi — програмиране и свързване.</p><p><strong>Комуникационни протоколи</strong> — Wi-Fi, Bluetooth, MQTT, HTTP.</p><p><strong>Приложения</strong> — умни домове, индустриална автоматизация, мониторинг на околната среда, предиктивна поддръжка.</p><div class="modal-tags"><span class="modal-tag is-tag">Arduino</span><span class="modal-tag is-tag">ESP32</span><span class="modal-tag is-tag">MQTT</span><span class="modal-tag is-tag">Raspberry Pi</span></div>'},
+'area-code':{e:'💻',t:'Програмиране',c:'is',h:'<p>Програмирането е основният инструмент на всеки технологичен специалист. Учениците ще овладеят <strong>основните парадигми</strong> и ще създават реални проекти.</p><div class="modal-highlight is-hl"><p>📌 Python, C/C++ и JavaScript са сред най-търсените езици за AI разработка.</p></div><p><strong>Основи</strong> — променливи, типове данни, условни конструкции, цикли, функции, масиви.</p><p><strong>ООП</strong> — класове, обекти, наследяване, полиморфизъм, капсулиране.</p><p><strong>Алгоритми и структури от данни</strong> — сортиране, търсене, рекурсия, стекове, опашки, дървета.</p><p><strong>Уеб разработка</strong> — HTML, CSS, JavaScript, DOM манипулация.</p><p><strong>Екипна работа</strong> — Git, GitHub, pull requests, code review.</p><div class="modal-tags"><span class="modal-tag is-tag">Python</span><span class="modal-tag is-tag">C#</span><span class="modal-tag is-tag">JavaScript</span><span class="modal-tag is-tag">Git</span></div>'},
+'area-gen':{e:'✨',t:'Генеративен изкуствен интелект',c:'is',h:'<p>Генеративният ИИ е най-бързо развиващата се технология. Учениците ще научат как работят <strong>Large Language Models (LLMs)</strong> и как да ги използват ефективно и етично.</p><div class="modal-highlight is-hl"><p>📌 Към 2026 г. се очаква 86% от бизнесите да бъдат трансформирани от AI и автоматизация.</p></div><p><strong>Как работят LLM моделите</strong> — токенизация, трансформърни архитектури, attention механизъм.</p><p><strong>Prompt engineering</strong> — формулиране на ефективни заявки за качествени резултати.</p><p><strong>Генериране на съдържание</strong> — текст, изображения, код, аудио.</p><p><strong>Етика на ИИ</strong> — авторски права, достоверност, биас, EU AI Act.</p><div class="modal-tags"><span class="modal-tag is-tag">ChatGPT</span><span class="modal-tag is-tag">Claude</span><span class="modal-tag is-tag">Stable Diffusion</span><span class="modal-tag is-tag">Prompt engineering</span></div>'},
+'area-math':{e:'📐',t:'Математика за интелигентни системи',c:'is',h:'<p>Зад всеки AI алгоритъм стои математика. Учениците ще изучат <strong>ключовите математически концепции</strong>.</p><div class="modal-highlight is-hl"><p>📌 Математическата грамотност е основен диференциатор между оператор на AI инструменти и създател на AI решения.</p></div><p><strong>Линейна алгебра</strong> — вектори, матрици, матрични операции.</p><p><strong>Статистика и вероятности</strong> — разпределения, средни стойности, Байесова теорема.</p><p><strong>Оптимизация</strong> — градиентно спускане, функции на загуба.</p><div class="modal-tags"><span class="modal-tag is-tag">Линейна алгебра</span><span class="modal-tag is-tag">Градиентно спускане</span><span class="modal-tag is-tag">Вероятности</span><span class="modal-tag is-tag">NumPy</span></div>'},
+'is-class-8':{e:'📘',t:'VIII клас — Фундаментът',c:'is',h:'<p>В осми клас се полагат <strong>здравите основи</strong> на общообразователната и началната професионална подготовка.</p><p><strong>Разширено изучаване на чужд език</strong> — 432 учебни часа (12 часа седмично). Английският е ключов за ИТ сферата.</p><p><strong>Математика</strong> — 108 часа — базата за бъдещото програмиране и AI алгоритми.</p><p><strong>Информационни технологии</strong> — 36 часа — основна компютърна грамотност.</p><p><strong>Предприемачество</strong> — 36 часа — бизнес мислене от самото начало.</p><div class="modal-highlight is-hl"><p>📌 Общо 1152 учебни часа + 144 факултативни часа за допълнителна подготовка.</p></div>'},
+'is-class-9':{e:'📗',t:'IX клас — Първи стъпки в ИТ',c:'is',h:'<p>В девети клас започва <strong>отрасловата професионална подготовка</strong>.</p><p><strong>Дигитални технологии</strong> — 36ч теория + 18ч практика.</p><p><strong>Програмиране</strong> — 18ч теория + 36ч практика.</p><p><strong>Основи на бази данни</strong> — 36ч теория + 36ч практика.</p><p><strong>ЗБУТ</strong> — 18 часа.</p><div class="modal-highlight is-hl"><p>📌 54 часа разширена професионална подготовка за задълбочаване по избрани теми.</p></div>'},
+'is-class-10':{e:'📙',t:'X клас — Утвърждаване на уменията',c:'is',h:'<p>В десети клас се <strong>надграждат уменията</strong> и започва производствената практика.</p><p><strong>Програмиране</strong> — 18ч теория + 18ч практика.</p><p><strong>Дигитални технологии</strong> — практическо приложение.</p><p><strong>Икономика</strong> — 36 часа.</p><p><strong>Производствена практика</strong> — 64 часа.</p><div class="modal-highlight is-hl"><p>📌 90 часа разширена професионална подготовка. Завършва I гимназиален етап.</p></div>'},
+'is-class-11':{e:'📕',t:'XI клас — Сърцето на специалността',c:'is',h:'<p>Единадесети клас е <strong>най-интензивният</strong> — тук започват всички специфични предмети.</p><p><strong>Алгоритми и структури от данни за МО</strong> — 36ч теория + 54ч практика.</p><p><strong>Анализ на данни</strong> — 36ч теория + 54ч практика.</p><p><strong>Програмиране на интелигентни системи</strong> — 72ч теория + 72ч практика.</p><p><strong>ИИ във вградени системи</strong> — 54ч теория + 72ч практика.</p><p><strong>Математика за ИИ</strong> — 36ч теория + 36ч практика.</p><p><strong>Генеративен ИИ</strong> — 18ч теория + 36ч практика.</p><p><strong>Чужд език по професията</strong> — 72 часа.</p><div class="modal-highlight is-hl"><p>📌 Общо 720 часа избираеми + 64 часа производствена практика.</p></div>'},
+'is-class-12':{e:'🎓',t:'XII клас — Професионална зрелост',c:'is',h:'<p>Дванадесети клас е фокусиран върху <strong>задълбочаване и подготовка за държавните изпити</strong>.</p><p><strong>Продължение на всички специфични предмети</strong> — допълнителни часове практика и теория.</p><p><strong>Производствена практика</strong> — 128 часа.</p><p><strong>Държавни изпити:</strong></p><p>1. ДЗИ по <strong>Български език и литература</strong></p><p>2. Държавен изпит по <strong>теория на професията</strong></p><p>3. Държавен изпит по <strong>практика на професията</strong></p><div class="modal-highlight is-hl"><p>📌 При успешно завършване — диплома за средно образование + свидетелство за III степен на професионална квалификация.</p></div>'},
+'career-ai':{e:'🤖',t:'AI / ML разработчик',c:'is',h:'<p><strong>AI/ML разработчикът</strong> проектира, обучава и внедрява модели за машинно обучение.</p><div class="modal-highlight is-hl"><p>💰 Средна заплата в Европа: €70 000 – €100 000 годишно.</p></div><p>Наемането на AI/ML специалисти е нараснало с <strong>88% за една година</strong>.</p><p><strong>Необходими умения:</strong> Python, TensorFlow, PyTorch, scikit-learn, статистика.</p><div class="modal-tags"><span class="modal-tag is-tag">Висока заплата</span><span class="modal-tag is-tag">Огромно търсене</span><span class="modal-tag is-tag">+88% ръст</span></div>'},
+'career-data':{e:'📈',t:'Анализатор на данни (Data Scientist)',c:'is',h:'<p><strong>Data Scientist</strong> анализира и интерпретира сложни набори от данни.</p><div class="modal-highlight is-hl"><p>💰 Средна заплата в Германия: €70 000 – €110 000.</p></div><p><strong>Необходими умения:</strong> SQL, Python/R, Pandas, статистика, визуализация.</p><div class="modal-tags"><span class="modal-tag is-tag">Data-driven бизнес</span><span class="modal-tag is-tag">Стабилно търсене</span></div>'},
+'career-iot':{e:'🏠',t:'IoT специалист',c:'is',h:'<p><strong>IoT специалистът</strong> проектира и внедрява свързани системи.</p><div class="modal-highlight is-hl"><p>💰 Глобалният IoT пазар ще достигне $1.3 трилиона до 2026 г.</p></div><p><strong>Необходими умения:</strong> Embedded системи, мрежови протоколи, MQTT, облачни платформи.</p><div class="modal-tags"><span class="modal-tag is-tag">$1.3T пазар</span><span class="modal-tag is-tag">5G революция</span></div>'},
+'career-integrator':{e:'🔧',t:'Системен интегратор',c:'is',h:'<p><strong>Системният интегратор</strong> свързва различни технологични системи в единно решение.</p><div class="modal-highlight is-hl"><p>📌 88% от организациите вече използват AI в поне една бизнес функция.</p></div><p><strong>Необходими умения:</strong> Мрежи, API интеграция, облачни платформи, DevOps.</p><div class="modal-tags"><span class="modal-tag is-tag">Архитектура</span><span class="modal-tag is-tag">Cloud</span><span class="modal-tag is-tag">API</span></div>'},
+'career-security':{e:'🛡️',t:'AI специалист по киберсигурност',c:'is',h:'<p><strong>AI киберсигурността</strong> е нова и бързо растяща област.</p><div class="modal-highlight is-hl"><p>📌 С новия EU AI Act нараства търсенето на специалисти по AI сигурност.</p></div><p><strong>Необходими умения:</strong> Мрежова сигурност, криптография, Python, етичен хакинг.</p><div class="modal-tags"><span class="modal-tag is-tag">EU AI Act</span><span class="modal-tag is-tag">Висока заплата</span></div>'},
+'career-robotics':{e:'⚙️',t:'Роботик / Автоматизация',c:'is',h:'<p><strong>Роботиката и автоматизацията</strong> обединяват AI, IoT и инженерство.</p><div class="modal-highlight is-hl"><p>📌 AI и автоматизацията ще създадат 170 милиона нови работни места глобално до 2030 г.</p></div><p><strong>Необходими умения:</strong> C/C++, Python, ROS, компютърно зрение, контролни системи.</p><div class="modal-tags"><span class="modal-tag is-tag">+170M работни места</span><span class="modal-tag is-tag">Индустрия 5.0</span></div>'},
+'career-uni-is':{e:'🎓',t:'Висше образование',c:'is',h:'<p>Завършилите имат <strong>отлична основа</strong> за продължаване на образованието в престижни университети.</p><div class="modal-highlight is-hl"><p>📌 Дипломата + европейското приложение (ниво 4 по ЕКР) дават право за кандидатстване навсякъде в ЕС.</p></div><p><strong>Подходящи университетски специалности:</strong> Компютърни науки, Изкуствен интелект, Data Science, Роботика, Киберсигурност.</p>'},
+'career-startup-is':{e:'🚀',t:'Стартъп предприемач',c:'is',h:'<p>Завършилите могат да <strong>създадат собствен технологичен бизнес</strong> с помощта на ИИ.</p><div class="modal-highlight is-hl"><p>📌 ИИ стартъпите привличат рекордни инвестиции. Учебният план включва 36 часа Предприемачество + 36 часа Икономика.</p></div><p><strong>Области за AI стартъпи:</strong> Автоматизация, AI асистенти, Анализ на данни, Умно земеделие, EdTech.</p><div class="modal-tags"><span class="modal-tag is-tag">Иновации</span><span class="modal-tag is-tag">Рекордни инвестиции</span></div>'},
+'cert-diploma-is':{e:'📜',t:'Диплома за средно образование',c:'is',h:'<p>При успешно завършване на XII клас и полагане на <strong>ДЗИ по БЕЛ</strong>, ученикът получава диплома за средно образование.</p><p>Дипломата дава <strong>право за кандидатстване</strong> във всички висши учебни заведения.</p><div class="modal-highlight is-hl"><p>📌 Учениците, които не са положили успешно някой от изпитите, получават удостоверение за завършен втори гимназиален етап.</p></div>'},
+'cert-qualification-is':{e:'🏅',t:'Свидетелство за професионална квалификация',c:'is',h:'<p>Свидетелството удостоверява придобита <strong>III степен на професионална квалификация</strong> по професия „Интелигентни системи".</p><p><strong>Държавният изпит</strong> се провежда в две части — по <strong>теория</strong> и по <strong>практика</strong>.</p><div class="modal-highlight is-hl"><p>📌 Зрелостник, положил успешно само изпита за квалификация, получава свидетелство дори без диплома за средно образование.</p></div>'},
+'cert-eu-is':{e:'🇪🇺',t:'Европейско приложение',c:'is',h:'<p><strong>Европейското приложение</strong> е признато във всички страни от ЕС.</p><p>Квалификацията е на <strong>ниво 4 по ЕКР</strong> и <strong>ниво 4 по НКР</strong>.</p><div class="modal-highlight is-hl"><p>📌 Завършилите могат да работят или учат навсякъде в ЕС с автоматично призната квалификация.</p></div>'},
+'cert-practice-is':{e:'💼',t:'Производствена практика',c:'is',h:'<p>Общо <strong>192 учебни часа</strong> в реални технологични компании.</p><p><strong>X клас:</strong> 64 часа. <strong>XI клас:</strong> 64 часа. <strong>XII клас:</strong> 64 часа.</p><div class="modal-highlight is-hl"><p>📌 Уникална възможност за изграждане на професионални контакти.</p></div>'},
+'cert-uni-is':{e:'🔑',t:'Достъп до висше образование',c:'is',h:'<p>Дипломата дава <strong>пълно право за кандидатстване</strong> във всички университети в България и ЕС.</p><div class="modal-highlight is-hl"><p>📌 Ниво 4 по ЕКР е признато от всички европейски университети.</p></div>'},
+'cert-market-is':{e:'🌍',t:'Готовност за пазара на труда',c:'is',h:'<p>Завършилите придобиват компетентности в <strong>най-търсените технологични области</strong>.</p><div class="modal-highlight is-hl"><p>💰 AI/ML специалистите получават средно 12% по-висока заплата. До 2030 г. — нетен ръст от 78 милиона нови работни места.</p></div><div class="modal-tags"><span class="modal-tag is-tag">+78M работни места</span><span class="modal-tag is-tag">+12% заплата</span></div>'},
+
+/* ─── RS MODALS ─── */
+'rs-area-prog':{e:'⌨️',t:'Програмиране и ООП',c:'rs',h:'<p>Програмирането е фундаментът на софтуерната разработка. Учениците ще овладеят <strong>обектно-ориентираното програмиране</strong> — от основите до напреднали концепции.</p><div class="modal-highlight rs-hl"><p>📌 Софтуерните разработчици са сред 3-те най-търсени професии в Европа. Търсенето расте стабилно всяка година.</p></div><p><strong>Основи</strong> — променливи, типове данни, условни оператори (if, else, switch), цикли (for, while), функции.</p><p><strong>ООП</strong> — класове и обекти, свойства и методи, енкапсулация, наследяване и полиморфизъм, абстракция и интерфейси.</p><p><strong>Добри практики</strong> — четим код, модули, коментари, SOLID принципи, именуване и структуриране.</p><p><strong>Колекции</strong> — списъци, множества, речници, сортиране, филтриране, обхождане на вложени структури.</p><div class="modal-tags"><span class="modal-tag rs-tag">C#</span><span class="modal-tag rs-tag">ООП</span><span class="modal-tag rs-tag">SOLID</span><span class="modal-tag rs-tag">Visual Studio</span><span class="modal-tag rs-tag">.NET</span></div>'},
+'rs-area-web':{e:'🌐',t:'Уеб и мобилно програмиране',c:'rs',h:'<p>Уеб и мобилната разработка са <strong>гръбнакът на съвременния софтуер</strong>. Учениците ще създават адаптивни и интерактивни приложения.</p><div class="modal-highlight rs-hl"><p>📌 Над 60% от световния интернет трафик идва от мобилни устройства. Уеб разработчиците са сред най-стабилно търсените ИТ професии.</p></div><p><strong>Frontend</strong> — HTML5 семантична структура, CSS3 стилизиране и анимации, JavaScript DOM манипулация.</p><p><strong>Адаптивен дизайн</strong> — media queries, flexbox, grid — приложения, които изглеждат добре на всяко устройство.</p><p><strong>SPA приложения</strong> — Single Page Application архитектура, динамично зареждане, AJAX.</p><p><strong>Мобилна разработка</strong> — мултиплатформени подходи, мобилни интерфейси.</p><div class="modal-tags"><span class="modal-tag rs-tag">HTML/CSS</span><span class="modal-tag rs-tag">JavaScript</span><span class="modal-tag rs-tag">React</span><span class="modal-tag rs-tag">Responsive</span><span class="modal-tag rs-tag">SPA</span></div>'},
+'rs-area-server':{e:'🖥️',t:'Програмиране на сървърна логика',c:'rs',h:'<p>Сървърната логика е <strong>мозъкът зад всяко приложение</strong> — обработва заявки, управлява данни и осигурява сигурност.</p><div class="modal-highlight rs-hl"><p>📌 Backend разработчиците са сред най-високоплатените ИТ специалисти. В България средната заплата е над 5000 лв. месечно.</p></div><p><strong>Клиент-сървър модел</strong> — HTTP протокол, заявки и отговори, статус кодове.</p><p><strong>REST API</strong> — проектиране, endpoint-и, GET/POST/PUT/DELETE, JSON формат.</p><p><strong>MVC архитектура</strong> — Model-View-Controller разделяне на отговорности.</p><p><strong>Автентикация и оторизация</strong> — JWT токени, сесии, роли и права.</p><p><strong>Сигурност</strong> — защита от SQL injection, XSS, CSRF и добри практики.</p><div class="modal-tags"><span class="modal-tag rs-tag">ASP.NET Core</span><span class="modal-tag rs-tag">REST API</span><span class="modal-tag rs-tag">MVC</span><span class="modal-tag rs-tag">HTTP</span><span class="modal-tag rs-tag">JSON</span></div>'},
+'rs-area-db':{e:'🗄️',t:'Бази данни',c:'rs',h:'<p>Базите данни са <strong>сърцето на всяко приложение</strong> — съхраняват, организират и предоставят информация по ефективен начин.</p><div class="modal-highlight rs-hl"><p>📌 SQL е в топ 3 на най-търсените технически умения глобално. Знанията по бази данни са задължителни за всяка ИТ позиция.</p></div><p><strong>Релационен модел</strong> — таблици, ключове, релации 1:1, 1:N, N:N.</p><p><strong>SQL</strong> — SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY, подзаявки.</p><p><strong>Нормализация</strong> — 1NF, 2NF, 3NF — оптимална структура на данните.</p><p><strong>Индекси и производителност</strong> — оптимизиране на заявки.</p><p><strong>ORM</strong> — свързване на бази данни към приложения чрез Entity Framework.</p><div class="modal-tags"><span class="modal-tag rs-tag">SQL</span><span class="modal-tag rs-tag">MySQL</span><span class="modal-tag rs-tag">Entity Framework</span><span class="modal-tag rs-tag">JOIN</span><span class="modal-tag rs-tag">Нормализация</span></div>'},
+'rs-area-algo':{e:'🧩',t:'Алгоритми и структури от данни',c:'rs',h:'<p>Алгоритмите и структурите от данни са <strong>основата на ефективното програмиране</strong> — те определят бързината и качеството на софтуера.</p><div class="modal-highlight rs-hl"><p>📌 Знанията по алгоритми са ключови за успешно представяне на технически интервюта в компании като Google, Microsoft и Amazon.</p></div><p><strong>Линейни структури</strong> — масиви, списъци, стекове, опашки — реализация и приложение.</p><p><strong>Нелинейни структури</strong> — дървета и графи — представяне и обхождане (BFS, DFS).</p><p><strong>Алгоритми за сортиране</strong> — Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort.</p><p><strong>Алгоритми за търсене</strong> — линейно, двоично, търсене в дървета.</p><p><strong>Рекурсия</strong> — принципи, базов случай, рекурсивни решения.</p><p><strong>Сложност</strong> — Big O нотация, времева и пространствена сложност.</p><div class="modal-tags"><span class="modal-tag rs-tag">Big O</span><span class="modal-tag rs-tag">Сортиране</span><span class="modal-tag rs-tag">Търсене</span><span class="modal-tag rs-tag">Дървета</span><span class="modal-tag rs-tag">Рекурсия</span></div>'},
+'rs-area-devops':{e:'☁️',t:'Разработка на софтуер и облачни технологии',c:'rs',h:'<p>Софтуерната разработка не е само писане на код — тя включва целия <strong>жизнен цикъл</strong> от идеята до внедряването и поддръжката.</p><div class="modal-highlight rs-hl"><p>📌 DevOps инженерите са сред топ 5 най-търсени ИТ роли. Компаниите с CI/CD процеси внедряват софтуер 200× по-често.</p></div><p><strong>Жизнен цикъл</strong> — анализ, проектиране, реализация, тестване, внедряване, поддръжка.</p><p><strong>Методологии</strong> — Agile, Scrum, DevOps — ефективна екипна работа.</p><p><strong>Тестване</strong> — unit тестове, интеграционни тестове, QA процеси.</p><p><strong>CI/CD</strong> — непрекъсната интеграция и доставка.</p><p><strong>Облачни технологии</strong> — IaaS, PaaS, SaaS, виртуализация, контейнеризация (Docker).</p><p><strong>Вградени системи и IoT</strong> — програмиране на микрокомпютърни системи.</p><div class="modal-tags"><span class="modal-tag rs-tag">Git</span><span class="modal-tag rs-tag">Docker</span><span class="modal-tag rs-tag">CI/CD</span><span class="modal-tag rs-tag">Agile</span><span class="modal-tag rs-tag">Scrum</span><span class="modal-tag rs-tag">Cloud</span></div>'},
+'rs-class-8':{e:'📘',t:'VIII клас — Фундаментът',c:'rs',h:'<p>В осми клас се полагат <strong>здравите основи</strong> на общообразователната и началната професионална подготовка.</p><p><strong>Разширено изучаване на чужд език</strong> — 432 учебни часа (12 часа седмично). Английският е ключов за програмиране.</p><p><strong>Математика</strong> — 108 часа — базата за алгоритмично мислене.</p><p><strong>Информационни технологии</strong> — 36 часа — основна компютърна грамотност.</p><p><strong>Предприемачество</strong> — 36 часа — бизнес мислене от самото начало.</p><div class="modal-highlight rs-hl"><p>📌 Общо 1152 учебни часа + 144 факултативни часа. Разширена професионална подготовка — 54 часа.</p></div>'},
+'rs-class-9':{e:'📗',t:'IX клас — Първи стъпки в кода',c:'rs',h:'<p>В девети клас започва <strong>отрасловата професионална подготовка</strong> — първият реален досег с програмиране и бази данни.</p><p><strong>Дигитални технологии</strong> — 18ч теория + 18ч практика — компютърни системи, ОС, мрежи.</p><p><strong>Програмиране</strong> — 18ч теория + 36ч практика — променливи, условия, цикли, първи програми.</p><p><strong>Основи на бази данни</strong> — 36ч теория + 36ч практика — SQL, таблици, релации, заявки.</p><p><strong>ЗБУТ</strong> — 18 часа.</p><div class="modal-highlight rs-hl"><p>📌 90 часа разширена професионална подготовка за задълбочаване по избрани теми.</p></div>'},
+'rs-class-10':{e:'📙',t:'X клас — Утвърждаване на уменията',c:'rs',h:'<p>В десети клас се <strong>надграждат уменията</strong> от IX клас и започва първата производствена практика.</p><p><strong>Програмиране</strong> — 18ч теория + 18ч практика — ООП, по-сложни проекти.</p><p><strong>Дигитални технологии</strong> — 18ч теория + 18ч практика.</p><p><strong>Икономика</strong> — 36 часа.</p><p><strong>Производствена практика</strong> — 64 часа — първият контакт с работна среда.</p><div class="modal-highlight rs-hl"><p>📌 Завършва I гимназиален етап. Учениците могат да придобият II степен ПК след успешен държавен изпит.</p></div>'},
+'rs-class-11':{e:'📕',t:'XI клас — Сърцето на специалността',c:'rs',h:'<p>Единадесети клас е <strong>най-интензивният</strong> — тук започват всички специфични професионални предмети.</p><p><strong>Уеб и мобилно програмиране</strong> — 54ч теория + 72ч практика — HTML, CSS, JS, React, адаптивен дизайн.</p><p><strong>Програмиране на сървърна логика</strong> — 36ч теория + 54ч практика — backend, REST API, MVC.</p><p><strong>Бази данни</strong> — 54ч теория + 54ч практика — SQL, нормализация, ORM.</p><p><strong>Алгоритми и структури от данни</strong> — 36ч теория + 36ч практика.</p><p><strong>Разработка на софтуер</strong> — 54ч теория + 54ч практика — SDLC, тестване, Agile.</p><p><strong>Облачни технологии и вградени системи</strong> — 36ч теория + 36ч практика.</p><p><strong>Чужд език по професията</strong> — 72 часа.</p><div class="modal-highlight rs-hl"><p>📌 Общо 720 часа специфична подготовка + 64 часа производствена практика. Годината, в която учениците стават софтуерни разработчици.</p></div>'},
+'rs-class-12':{e:'🎓',t:'XII клас — Професионална зрелост',c:'rs',h:'<p>Дванадесети клас е фокусиран върху <strong>задълбочаване, практика и подготовка за държавните изпити</strong>.</p><p><strong>Продължение на всички специфични предмети</strong> — уеб програмиране, сървърна логика, алгоритми, разработка на софтуер, облачни технологии.</p><p><strong>Производствена практика</strong> — 64 часа — реална работа в софтуерна компания.</p><p><strong>Държавни изпити:</strong></p><p>1. ДЗИ по <strong>Български език и литература</strong></p><p>2. Държавен изпит по <strong>теория на професията</strong> (писмен тест от 20 въпроса по 10 теми)</p><p>3. Държавен изпит по <strong>практика на професията</strong> (индивидуално практическо задание)</p><div class="modal-highlight rs-hl"><p>📌 При успешно завършване — диплома за средно образование + свидетелство за III степен на професионална квалификация по „Разработка на софтуер".</p></div>'},
+'rs-career-full':{e:'🔥',t:'Full-Stack разработчик',c:'rs',h:'<p><strong>Full-Stack разработчикът</strong> владее както frontend, така и backend технологии — може да създаде цялостно приложение от нулата.</p><div class="modal-highlight rs-hl"><p>💰 Средна заплата в Европа: €55 000 – €90 000 годишно. В България: 5 000 – 10 000 лв. месечно за опитни разработчици.</p></div><p>Това е една от <strong>най-гъвкавите</strong> и търсени роли в ИТ сектора — компаниите ценят специалисти, които разбират цялата система.</p><p><strong>Необходими умения:</strong> HTML/CSS/JS, React/Angular, C#/Node.js, SQL, REST API, Git.</p><div class="modal-tags"><span class="modal-tag rs-tag">Висока гъвкавост</span><span class="modal-tag rs-tag">Голямо търсене</span><span class="modal-tag rs-tag">Широки умения</span></div>'},
+'rs-career-front':{e:'🎨',t:'Frontend разработчик',c:'rs',h:'<p><strong>Frontend разработчикът</strong> превръща дизайна в реалност — създава интерактивни, бързи и красиви потребителски интерфейси.</p><div class="modal-highlight rs-hl"><p>💰 Средна заплата в Европа: €45 000 – €75 000. В България: 4 000 – 8 000 лв. месечно.</p></div><p><strong>Необходими умения:</strong> HTML, CSS, JavaScript, React/Vue, TypeScript, responsive дизайн, UX.</p><div class="modal-tags"><span class="modal-tag rs-tag">Креативност</span><span class="modal-tag rs-tag">UI/UX</span><span class="modal-tag rs-tag">React</span></div>'},
+'rs-career-back':{e:'🖥️',t:'Backend разработчик',c:'rs',h:'<p><strong>Backend разработчикът</strong> изгражда сървърната логика, базите данни и API-тата, които захранват приложенията.</p><div class="modal-highlight rs-hl"><p>💰 Средна заплата в Европа: €55 000 – €95 000. Backend специалистите са сред най-високоплатените ИТ роли.</p></div><p><strong>Необходими умения:</strong> C#/.NET, SQL, REST API, архитектурни шаблони, Docker, сигурност.</p><div class="modal-tags"><span class="modal-tag rs-tag">Високо заплащане</span><span class="modal-tag rs-tag">Стабилно търсене</span><span class="modal-tag rs-tag">Архитектура</span></div>'},
+'rs-career-mobile':{e:'📱',t:'Мобилен разработчик',c:'rs',h:'<p><strong>Мобилният разработчик</strong> създава приложения за смартфони и таблети — платформите, които хората използват най-много.</p><div class="modal-highlight rs-hl"><p>📌 Над 6.8 милиарда смартфона в света. Пазарът на мобилни приложения генерира над $935 милиарда годишно.</p></div><p><strong>Необходими умения:</strong> JavaScript/React Native, или C#/MAUI, мобилен UI/UX.</p><div class="modal-tags"><span class="modal-tag rs-tag">$935B пазар</span><span class="modal-tag rs-tag">6.8B устройства</span><span class="modal-tag rs-tag">Мултиплатформен</span></div>'},
+'rs-career-devops':{e:'⚡',t:'DevOps инженер',c:'rs',h:'<p><strong>DevOps инженерът</strong> е мостът между разработката и операциите — автоматизира, оптимизира и ускорява доставката на софтуер.</p><div class="modal-highlight rs-hl"><p>💰 Средна заплата в Европа: €60 000 – €100 000. Една от най-бързо растящите ИТ роли.</p></div><p><strong>Необходими умения:</strong> Git, CI/CD, Docker, Kubernetes, облачни платформи (AWS/Azure), скриптове.</p><div class="modal-tags"><span class="modal-tag rs-tag">200× по-бързо внедряване</span><span class="modal-tag rs-tag">Автоматизация</span><span class="modal-tag rs-tag">Cloud</span></div>'},
+'rs-career-qa':{e:'🔍',t:'QA инженер / Тестер',c:'rs',h:'<p><strong>QA инженерът</strong> гарантира, че софтуерът работи правилно — открива бъгове, пише тестове и подобрява качеството.</p><div class="modal-highlight rs-hl"><p>📌 Без QA екипи нито един сериозен софтуерен продукт не може да бъде пуснат на пазара.</p></div><p><strong>Необходими умения:</strong> Тестови стратегии, автоматизирано тестване, unit тестове, Selenium, JIRA.</p><div class="modal-tags"><span class="modal-tag rs-tag">Качество</span><span class="modal-tag rs-tag">Автоматизация</span><span class="modal-tag rs-tag">Критично мислене</span></div>'},
+'rs-career-uni':{e:'🎓',t:'Висше образование',c:'rs',h:'<p>Завършилите имат <strong>отлична основа</strong> за продължаване на образованието в престижни университети.</p><div class="modal-highlight rs-hl"><p>📌 Дипломата + европейското приложение (ниво 4 по ЕКР) дават право за кандидатстване навсякъде в ЕС.</p></div><p><strong>Подходящи специалности:</strong> Софтуерно инженерство, Компютърни науки, Уеб технологии, Информационни системи, Киберсигурност.</p><p>Знанията от специалността дават <strong>значителна преднина</strong> — студентите вече знаят програмиране, бази данни и архитектура.</p>'},
+'rs-career-startup':{e:'🚀',t:'Стартъп предприемач',c:'rs',h:'<p>Завършилите могат да <strong>създадат собствен софтуерен бизнес</strong> — от мобилни приложения до SaaS платформи.</p><div class="modal-highlight rs-hl"><p>📌 Учебният план включва 36 часа Предприемачество + 36 часа Икономика. 85% от стартъп компаниите имат нужда от софтуерни разработчици.</p></div><p><strong>Области:</strong> SaaS приложения, мобилни приложения, e-commerce, автоматизация на бизнес процеси, EdTech.</p><div class="modal-tags"><span class="modal-tag rs-tag">SaaS</span><span class="modal-tag rs-tag">Продуктово мислене</span><span class="modal-tag rs-tag">Собствен бизнес</span></div>'},
+'cert-diploma-rs':{e:'📜',t:'Диплома за средно образование',c:'rs',h:'<p>При успешно завършване на XII клас и полагане на <strong>ДЗИ по БЕЛ</strong>, ученикът получава диплома за средно образование.</p><p>Дипломата дава <strong>право за кандидатстване</strong> във всички висши учебни заведения.</p><div class="modal-highlight rs-hl"><p>📌 Учениците, които не са положили успешно някой от изпитите, получават удостоверение за завършен втори гимназиален етап.</p></div>'},
+'cert-qualification-rs':{e:'🏅',t:'Свидетелство за професионална квалификация',c:'rs',h:'<p>Свидетелството удостоверява придобита <strong>III степен на професионална квалификация</strong> по професия „Разработка на софтуер".</p><p><strong>Държавният изпит</strong> се провежда в две части:</p><p>1. <strong>По теория</strong> — писмен тест от 20 въпроса по 10 теми: ООП, алгоритми, бази данни, уеб програмиране, архитектура, жизнен цикъл, облачни технологии.</p><p>2. <strong>По практика</strong> — индивидуално практическо задание.</p><p>Окончателната оценка: 50% теория + 50% практика.</p><div class="modal-highlight rs-hl"><p>📌 Учениците, успешно завършили XI клас, могат да придобият II степен ПК след успешен държавен изпит.</p></div>'},
+'cert-eu-rs':{e:'🇪🇺',t:'Европейско приложение',c:'rs',h:'<p><strong>Европейското приложение</strong> е признато във всички страни от ЕС.</p><p>Квалификацията е на <strong>ниво 4 по ЕКР</strong> и <strong>ниво 4 по НКР</strong>.</p><div class="modal-highlight rs-hl"><p>📌 Завършилите могат да работят или продължат образованието си навсякъде в ЕС с автоматично призната квалификация.</p></div>'},
+'cert-practice-rs':{e:'💼',t:'Производствена практика',c:'rs',h:'<p>Общо <strong>192 учебни часа</strong> в реални софтуерни компании.</p><p><strong>X клас:</strong> 64 часа — първи контакт с работна среда.</p><p><strong>XI клас:</strong> 64 часа — работа по реални софтуерни проекти.</p><p><strong>XII клас:</strong> 64 часа — задълбочена практика преди завършване.</p><div class="modal-highlight rs-hl"><p>📌 Практиката се провежда по учебна програма, утвърдена от директора и съгласувана с ръководителя на софтуерната компания.</p></div>'},
+'cert-uni-rs':{e:'🔑',t:'Достъп до висше образование',c:'rs',h:'<p>Дипломата дава <strong>пълно право за кандидатстване</strong> във всички университети.</p><p>Завършилите имат <strong>значителна преднина</strong>: опит с програмиране, бази данни, уеб разработка, архитектурни шаблони и екипна работа.</p><div class="modal-highlight rs-hl"><p>📌 Ниво 4 по ЕКР е признато от всички европейски университети.</p></div>'},
+'cert-market-rs':{e:'🌍',t:'Готовност за пазара на труда',c:'rs',h:'<p>Завършилите придобиват компетентности в <strong>едни от най-търсените области на ИТ пазара</strong>.</p><div class="modal-highlight rs-hl"><p>💰 Софтуерните разработчици в България: средно 4 500 – 10 000 лв./месечно. В Западна Европа: €55 000 – €100 000 годишно.</p></div><p><strong>Търсени умения:</strong> C#, JavaScript, SQL, HTML/CSS, Git, REST API, Agile, Docker.</p><p>Софтуерната индустрия е <strong>най-голямата и стабилна</strong> част от ИТ сектора — търсенето на разработчици е константно високо.</p><div class="modal-tags"><span class="modal-tag rs-tag">Стабилно търсене</span><span class="modal-tag rs-tag">Високо заплащане</span><span class="modal-tag rs-tag">Глобални възможности</span></div>'}
+};
+
+function openModal(k){const d=M[k];if(!d)return;modalEl.className='modal '+(d.c==='rs'?'rs-modal':'is-modal');modalBody.innerHTML='<span class="modal-emoji">'+d.e+'</span><h3>'+d.t+'</h3>'+d.h;overlay.classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(){overlay.classList.remove('active');document.body.style.overflow=''}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.querySelectorAll('[data-modal]').forEach(el=>{el.addEventListener('click',()=>openModal(el.dataset.modal))});
+</script>
+</body>
+</html>
